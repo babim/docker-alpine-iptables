@@ -1,0 +1,9 @@
+version: '2'
+services:
+  iptables:
+    image: 4km3/set-iptables:latest
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./entrypoint:/entrypoint
+    restart: never

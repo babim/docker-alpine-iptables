@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+set -e
+
+echo "Current iptables ruleset:"
+iptables -L
+echo "Applying iptables.conf:"
+
+# Example ruleset for a transparent proxy
+DEV=eth0
+PROXY_PORT=3128
+
+iptables -D PREROUTING -t nat -i $DEV -p tcp --dport 80  -j REDIRECT --to-port $PROXY_PORT || true
+iptables -D PREROUTING -t nat -i $DEV -p tcp --dport 443 -j REDIRECT --to-port $PROXY_PORT || true
+iptables -A PREROUTING -t nat -i $DEV -p tcp --dport 80  -j REDIRECT --to-port $PROXY_PORT
+iptables -A PREROUTING -t nat -i $DEV -p tcp --dport 443 -j REDIRECT --to-port $PROXY_PORT
+
+echo "Resulting iptables ruleset:"
+iptables -L
