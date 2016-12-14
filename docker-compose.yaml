@@ -6,4 +6,7 @@ services:
     network_mode: host
     volumes:
       - ./entrypoint:/entrypoint
-    restart: never
+    restart: on-failure
+    environment:
+      - SET_IPTABLES_DEV=eth0
+      - SET_IPTABLES_PROXY_PORT=3128
