@@ -1,9 +1,9 @@
 # set-iptables
-Load iptables rules
+Thanks 4km3
 
 ## Building
 ```console
-$ docker build -t 4km3/set-iptables .
+$ docker build -t babim/iptables-proxy
 ```
 ## Configuration
 ### Default values
