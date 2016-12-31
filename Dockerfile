@@ -1,9 +1,4 @@
-FROM        alpine:3.4
-MAINTAINER  Rodrigo de la Fuente <rodrigo@delafuente.email>
-
-LABEL Description="iptables configurator" \
-      Vendor="ACME Products"     	  \
-      Version="1.0"
+FROM babim/alpinebase
 
 COPY entrypoint /
 
