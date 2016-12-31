@@ -1,13 +1,35 @@
-# set-iptables
-Thanks 4km3
+Thanks fabric8io
 
-## Building
-```console
-$ docker build -t babim/iptables-proxy
+# iptables redirector
+
+iptables redirector is a simple Docker image that redirects traffic via DNAT to a different address/port. Redirection can be configured via the following environment variables:
+
+    TARGET_IP - the IP to redirect traffic to (default: 127.0.0.1)
+    TARGET_PORT - the port to redirect traffic to (default: 8080)
+    DESTINATIONS - the destination hostnames or IPs to redirect, comma separated (default: all)
+
+TARGET_PORT1 -> TARGET_PORT10
+
+#Examples
+##Forward all outbound traffic to 127.0.0.1:8080:
 ```
-## Configuration
-### Default values
+docker run --cap-add=NET_ADMIN babim/iptables:redirector
 ```
-: "${SET_IPTABLES_DEV:=eth0}"
-: "${SET_IPTABLES_PROXY_PORT:=3128}"
+##Forward all outbound traffic to 10.0.0.1:3128:
+```
+docker run --cap-add=NET_ADMIN \
+  -e TARGET_IP=10.0.0.1 -e TARGET_PORT=3128 \
+  babim/iptables:redirector
+```
+##Forward traffic destined to bbc.co.uk to 127.0.0.1:8080:
+```
+docker run --cap-add=NET_ADMIN \
+  -e DESTINATIONS=bbc.co.uk \
+  babim/iptables:redirector
+```
+##Forward traffic destined to bbc.co.uk & google.com to 127.0.0.1:8080:
+```
+docker run --cap-add=NET_ADMIN \
+  -e DESTINATIONS=bbc.co.uk,google.com \
+  babim/iptables:redirector
 ```
