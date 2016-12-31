@@ -1,12 +1,125 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-set -ex
+TARGET_IP=${TARGET_IP:-127.0.0.1}
+TARGET_PORT=${TARGET_PORT:-8080}
 
-: "${SET_IPTABLES_DEV:=eth0}"
-: "${SET_IPTABLES_PROXY_PORT:=3128}"
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT}
+  done
+fi
 
-# Example ruleset for a transparent proxy
-iptables -D PREROUTING -t nat -i "${SET_IPTABLES_DEV}" -p tcp --dport 80  -j REDIRECT --to-port "${SET_IPTABLES_PROXY_PORT}" || true
-iptables -D PREROUTING -t nat -i "${SET_IPTABLES_DEV}" -p tcp --dport 443 -j REDIRECT --to-port "${SET_IPTABLES_PROXY_PORT}" || true
-iptables -A PREROUTING -t nat -i "${SET_IPTABLES_DEV}" -p tcp --dport 80  -j REDIRECT --to-port "${SET_IPTABLES_PROXY_PORT}"
-iptables -A PREROUTING -t nat -i "${SET_IPTABLES_DEV}" -p tcp --dport 443 -j REDIRECT --to-port "${SET_IPTABLES_PROXY_PORT}"
+if [ -z "${TARGET_PORT1}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT1}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT1}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT2}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT2}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT2}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT3}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT3}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT3}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT4}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT4}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT4}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT5}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT5}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT5}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT6}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT6}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT6}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT7}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT7}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT7}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT8}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT8}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT8}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT9}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT9}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT9}
+  done
+fi
+fi
+
+if [ -z "${TARGET_PORT10}" ]; then
+if [ -z "${DESTINATIONS}" ]; then
+  iptables -t nat -A OUTPUT -p tcp -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT10}
+else
+  DESTINATIONS="${DESTINATIONS}" IFS=,
+  for dest in $DESTINATIONS; do
+    iptables -t nat -A OUTPUT -p tcp -d $dest -j DNAT --to-destination ${TARGET_IP}:${TARGET_PORT10}
+  done
+fi
+fi
+
+sleep 1000d
