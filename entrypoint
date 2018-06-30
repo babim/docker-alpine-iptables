@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
 
 TARGET_IP=${TARGET_IP:-127.0.0.1}
 TARGET_PORT=${TARGET_PORT:-8080}
