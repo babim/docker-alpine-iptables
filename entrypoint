@@ -2,6 +2,9 @@
 
 set -ex
 
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
+
 : "${SET_IPTABLES_DEV:=eth0}"
 : "${SET_IPTABLES_PROXY_PORT:=3128}"
 
